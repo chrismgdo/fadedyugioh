@@ -102,26 +102,26 @@ nav a:hover {
 
 @media (max-width: 1300px) {
     .placeholder-image {
-        width: 352px;
-        height: 528px;
+        width: 300px;
+        height: 450px;
     }
 }
 
 @media (max-width: 900px) {
     .placeholder-image {
-        width: 264px;
-        height: 396px;
+        width: 220px;
+        height: 330px;
     }
 }
 
 @media (max-width: 700px) {
     .placeholder-image {
-        width: 154px;
-        height: 231px;
+        width: 120px;
+        height: 180px;
     }
     
     .image-container {
-        gap: 20px;
+        gap: 15px;
     }
     
     nav {
