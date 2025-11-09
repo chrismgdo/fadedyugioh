@@ -21,7 +21,7 @@
         h1 {
             margin: 0 0 80px 0;
             font-weight: 700;
-            font-size: clamp(24px, 4vw, 48px);
+            font-size: clamp(18px, 3vw, 32px);
             text-transform: uppercase;
             letter-spacing: 0.2em;
         }
@@ -35,8 +35,8 @@
         }
         
         .placeholder-image {
-            width: 300px;
-            height: 450px;
+            width: 600px;
+            height: 900px;
             background: #333;
             border: 2px solid #666;
             display: flex;
@@ -55,6 +55,27 @@
         
         .placeholder-image:hover {
             transform: scale(1.1);
+        }
+        
+        @media (max-width: 1300px) {
+            .placeholder-image {
+                width: 400px;
+                height: 600px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .placeholder-image {
+                width: 300px;
+                height: 450px;
+            }
+        }
+        
+        @media (max-width: 700px) {
+            .placeholder-image {
+                width: 250px;
+                height: 375px;
+            }
         }
     </style>
 </head>
