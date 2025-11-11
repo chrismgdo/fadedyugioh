@@ -29,6 +29,23 @@
             font-size: 22px;
             font-family: 'Courier New', monospace;
         }
+
+          .home-logo {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+        }
+        
+        .home-logo img {
+            height: 50px;
+            width: auto;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .home-logo img:hover {
+            opacity: 0.7;
+        }
         
         nav a {
             color: #fff;
@@ -164,6 +181,9 @@
     </style>
 </head>
 <body>
+    <a href="../../index.html" class="home-logo">
+        <img src="../../images/faviconsolo.png" alt="Home">
+    </a>
     <nav>
         <div class="dropdown">
             <a>guides</a>
