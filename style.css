@@ -138,13 +138,13 @@ nav a:hover {
             left: 40px;
         }
         
-        .home-logo img {
+    .home-logo img {
             height: 50px;
             width: auto;
             cursor: pointer;
             transition: opacity 0.3s;
         }
         
-        .home-logo img:hover {
+    .home-logo img:hover {
             opacity: 0.7;
         }
