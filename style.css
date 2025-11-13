@@ -26,6 +26,23 @@ nav {
     font-family: 'Courier New', monospace;
 }
 
+.home-logo {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+.home-logo img {
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.home-logo img:hover {
+    opacity: 0.7;
+}
+
 nav a {
     color: #fff;
     text-decoration: none;
@@ -130,21 +147,12 @@ nav a:hover {
         gap: 15px;
         font-size: 18px;
     }
-}
-
-  .home-logo {
-            position: absolute;
-            top: 20px;
-            left: 40px;
-        }
-        
+    
+    .home-logo {
+        left: 20px;
+    }
+    
     .home-logo img {
-            height: 50px;
-            width: auto;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-        
-    .home-logo img:hover {
-            opacity: 0.7;
-        }
+        height: 35px;
+    }
+}
