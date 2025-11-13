@@ -116,7 +116,7 @@
             text-align: left;
         }
         
-        .subtitle {
+        .body-text {
             font-family: 'Courier New', monospace;
             font-size: 22px;
             margin-bottom: 30px;
@@ -126,20 +126,20 @@
             text-align: left;
         }
         
+        .subtitle {
+            font-family: 'Courier New', monospace;
+            font-size: 22px;
+            margin-bottom: 30px;
+            color: #fff;
+            text-align: center;
+        }
+        
         .wavy-images {
             display: flex;
             gap: 50px;
             margin-bottom: 10px;
             justify-content: center;
             width: 100%;
-        }
-        
-        .wavy-caption {
-            font-family: 'Courier New', monospace;
-            font-size: 22px;
-            margin-bottom: 30px;
-            color: #fff;
-            text-align: center;
         }
         
         .wavy-image {
@@ -152,6 +152,11 @@
         .card-image {
             max-width: 90%;
             max-height: 60vh;
+            object-fit: contain;
+        }
+        .card-image-small {
+            max-width: 620px;
+            max-height: 650px;
             object-fit: contain;
         }
         
@@ -210,7 +215,7 @@
     <div class="image-container">
         <h1 class="page-title">Legend of Blue-Eyes White Dragon</h1>
         <p class="date">March 2002</p>
-        <p class="subtitle">The 1st Edition Legend of Blue-Eyes White Dragon (LOB) cards were produced in two distinct 
+        <p class="body-text">The 1st Edition Legend of Blue-Eyes White Dragon (LOB) cards were produced in two distinct 
             card stocks: wavy and glossy. These terms have been coined by the community and are the generally accepted terms used to 
             differentiate them. Wavy cards have a subtle texture across the foil creating a patterned matte effect, while glossy cards feature a 
             smoother, shinier surface.</p>
@@ -218,18 +223,28 @@
             <img src="../../images/lob/dm_glossy.png" alt="DM Glossy" class="wavy-image">
             <img src="../../images/lob/dm_wavy1.png" alt="DM Wavy 1" class="wavy-image">
         </div>
-        <p class="subtitle">Wavy copies make up about 1/3 of the total population. Among these include faded variants which have a wide range of color variations due to
+        <p class="body-text">Wavy copies make up about 1/3 of the total population. Among these include faded variants which have a wide range of color variations due to
             missing magenta. More drastic effects increase rarity and value exponentially.
         </p>
 
         <div class="wavy-images">
             <img src="../../images/lob/dm_wavy1.png" alt="DM Wavy 1" class="wavy-image">
+            <img src="../../images/lob/dm_wavy5.png" alt="DM Wavy 5" class="wavy-image">
             <img src="../../images/lob/dm_wavy2.png" alt="DM Wavy 2" class="wavy-image">
             <img src="../../images/lob/dm_wavy3.png" alt="DM Wavy 3" class="wavy-image">
         </div>
-        <p class="wavy-caption">Dark Magician wavy variants</p>
-        <img src="../../images/lob/right_arms.png" alt="Right Arm of the Forbidden One" class="card-image">
-        <p class="wavy-caption">Exodia pieces wavy variants</p>
+        <p class="subtitle">Dark Magician wavy variants</p>
+        <p class="body-text">All Super, Ultra, and Secret Rares in wavy have a chance to be faded.</p>
+        <div class="wavy-images">
+        <img src="../../images/lob/right_arms.png" alt="Right Arm of the Forbidden One" class="card-image-small">
+        <img src="../../images/lob/right_arms2.png" alt="Right Arm of the Forbidden One" class="card-image-small">
+        </div>
+        <p class="subtitle">Exodia wavy variants</p>
+        
+        <div class="wavy-images">
+        <img src="../../images/lob/dm_wavy4.png" alt="Right Arm of the Forbidden One" class="card-image-small">
+        <img src="../../images/lob/wavy_gaia1.PNG" alt="Right Arm of the Forbidden One" class="card-image-small">
+        </div>
 
     </div>
 </body>
