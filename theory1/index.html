@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yu-Gi-Oh 2002-2004 Magenta Defect: Complete Production Failure Analysis</title>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <style>
         * {
             margin: 0;
@@ -633,10 +634,40 @@
             .mystery-grid {
                 grid-template-columns: 1fr;
             }
+
+            .home-logo {
+                left: 20px;
+            }
+
+            .home-logo img {
+                height: 35px;
+            }
+        }
+
+        .home-logo {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            z-index: 10;
+        }
+
+        .home-logo img {
+            height: 50px;
+            width: auto;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .home-logo img:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
+    <a href="../index.html" class="home-logo">
+        <img src="../images/faviconsolo.png" alt="Home">
+    </a>
+
     <div class="container">
         <h1>Yu-Gi-Oh 2002-2004 Magenta Defect</h1>
         <p class="subtitle">Complete Production Failure Analysis — How Deadline Pressure Created a Systemic Printing Defect</p>
