@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir C:/Users/cat/Desktop/fadedyugioh/theory1)",
+      "Bash(git -C C:/Users/cat/Desktop/fadedyugioh mv \"sets/lob/yugioh_magenta_defect_diagram \\(1\\).html\" \"theory1/index.html\")"
+    ]
+  }
+}
