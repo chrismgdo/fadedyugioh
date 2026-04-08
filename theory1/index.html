@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu-Gi-Oh 2002-2004 Magenta Defect: Complete Production Failure Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #00d2d3, #ff6b6b, #feca57, #5f27cd, #00d2d3);
+            border-radius: 2px;
+        }
+        
+        .stage {
+            position: relative;
+            margin-bottom: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .stage-content {
+            width: 45%;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .stage:nth-child(odd) .stage-content {
+            margin-right: 55%;
+        }
+        
+        .stage:nth-child(even) .stage-content {
+            margin-left: 55%;
+        }
+        
+        .stage-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 10;
+            border: 3px solid #1a1a2e;
+        }
+        
+        .stage-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .stage-icon {
+            font-size: 1.8rem;
+        }
+        
+        .stage-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .normal-process {
+            background: rgba(46, 213, 115, 0.15);
+            border-left: 3px solid #2ed573;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .normal-process h4 {
+            color: #2ed573;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .failure-process {
+            background: rgba(255, 107, 107, 0.15);
+            border-left: 3px solid #ff6b6b;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .failure-process h4 {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .details {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .details li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #feca57;
+        }
+        
+        .chemistry-box {
+            background: rgba(116, 75, 162, 0.2);
+            border: 1px solid #764ba2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+        
+        .chemistry-box h4 {
+            color: #a29bfe;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .evidence-section {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .evidence-section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #feca57;
+        }
+        
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .evidence-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #48dbfb;
+        }
+        
+        .evidence-card h4 {
+            color: #48dbfb;
+            margin-bottom: 8px;
+        }
+        
+        .color-shift-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .color-shift-table th {
+            background: rgba(102, 126, 234, 0.3);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .color-shift-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .color-shift-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .cmyk-visual {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .cmyk-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .cmyk-dot.cyan { background: #00d4ff; }
+        .cmyk-dot.magenta { background: #ff0090; }
+        .cmyk-dot.yellow { background: #ffdd00; }
+        .cmyk-dot.black { background: #000; }
+        .cmyk-dot.missing { background: transparent; border-style: dashed; }
+        
+        .root-cause {
+            margin-top: 50px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(254, 202, 87, 0.2) 100%);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .root-cause h2 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+        
+        .root-cause p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .flow-diagram {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .flow-diagram h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #48dbfb;
+        }
+        
+        .flow-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .flow-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .flow-box.success {
+            border: 2px solid #2ed573;
+        }
+        
+        .flow-box.warning {
+            border: 2px solid #feca57;
+        }
+        
+        .flow-box.failure {
+            border: 2px solid #ff6b6b;
+        }
+        
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #888;
+        }
+        
+        .flow-arrow.down {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .severity-scale {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .severity-scale h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #a29bfe;
+        }
+        
+        .severity-bar {
+            display: flex;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .severity-segment {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .severity-segment.slight {
+            background: linear-gradient(135deg, #2ed573, #7bed9f);
+            color: #000;
+        }
+        
+        .severity-segment.moderate {
+            background: linear-gradient(135deg, #feca57, #ffdd59);
+            color: #000;
+        }
+        
+        .severity-segment.significant {
+            background: linear-gradient(135deg, #ff9f43, #ee5a24);
+            color: #fff;
+        }
+        
+        .severity-segment.extreme {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: #fff;
+        }
+        
+        .severity-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .factor-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .factor-card h4 {
+            color: #feca57;
+            margin-bottom: 8px;
+        }
+        
+        .ink-diagram {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+        
+        .ink-diagram h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #48dbfb;
+        }
+        
+        .ink-layers {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .ink-layer {
+            width: 80%;
+            max-width: 400px;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .ink-layer.substrate {
+            background: #d4d4d4;
+            color: #333;
+        }
+        
+        .ink-layer.cyan-layer {
+            background: #00d4ff;
+            color: #000;
+        }
+        
+        .ink-layer.magenta-layer {
+            background: #ff0090;
+            color: #fff;
+        }
+        
+        .ink-layer.magenta-layer.uncured {
+            background: repeating-linear-gradient(
+                45deg,
+                #ff0090,
+                #ff0090 10px,
+                #ff4da6 10px,
+                #ff4da6 20px
+            );
+            animation: pulse 2s infinite;
+        }
+        
+        .ink-layer.yellow-layer {
+            background: #ffdd00;
+            color: #000;
+        }
+        
+        .ink-layer.black-layer {
+            background: #333;
+            color: #fff;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .cure-timeline {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .cure-item {
+            text-align: center;
+        }
+        
+        .cure-item .time {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #feca57;
+        }
+        
+        .cure-item .label {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .stamp-diagram {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+        
+        .stamp-diagram h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+        
+        .stamp-visual {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .stamp-example {
+            text-align: center;
+        }
+        
+        .stamp-example h4 {
+            margin-bottom: 15px;
+            color: #888;
+        }
+        
+        .card-surface {
+            width: 200px;
+            height: 120px;
+            background: linear-gradient(180deg, #f0e68c 0%, #daa520 100%);
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .stamp-zone {
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #c0c0c0, #808080);
+            border-radius: 4px;
+        }
+        
+        .stamp-zone.thin {
+            width: 70px;
+            height: 50px;
+        }
+        
+        .magenta-halo {
+            position: absolute;
+            width: 100px;
+            height: 80px;
+            border: 4px solid #ff0090;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 0, 144, 0.5);
+        }
+        
+        .displacement-arrows {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .arrow-out {
+            position: absolute;
+            color: #ff0090;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .arrow-out.top { top: -20px; left: 50%; transform: translateX(-50%); }
+        .arrow-out.bottom { bottom: -20px; left: 50%; transform: translateX(-50%); }
+        .arrow-out.left { left: -25px; top: 50%; transform: translateY(-50%); }
+        .arrow-out.right { right: -25px; top: 50%; transform: translateY(-50%); }
+
+        .mystery-solved {
+            margin-top: 50px;
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.2) 0%, rgba(72, 219, 251, 0.2) 100%);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(46, 213, 115, 0.3);
+        }
+        
+        .mystery-solved h2 {
+            text-align: center;
+            color: #2ed573;
+            margin-bottom: 20px;
+        }
+        
+        .mystery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .mystery-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .mystery-item h4 {
+            color: #48dbfb;
+            margin-bottom: 10px;
+        }
+        
+        .mystery-item .answer {
+            color: #2ed573;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .stage-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+            
+            .stage-number {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+            
+            .mystery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Yu-Gi-Oh 2002-2004 Magenta Defect</h1>
+        <p class="subtitle">Complete Production Failure Analysis — How Deadline Pressure Created a Systemic Printing Defect</p>
+
+        <!-- FLOW DIAGRAM OVERVIEW -->
+        <div class="flow-diagram">
+            <h2>Production Flow Overview</h2>
+            <div class="flow-row">
+                <div class="flow-box success">
+                    <strong>PREPRESS</strong><br>
+                    <small>Files & Plates OK</small>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box success">
+                    <strong>PRESS</strong><br>
+                    <small>CMYK Printed OK</small>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box warning">
+                    <strong>CURING</strong><br>
+                    <small>Magenta Slow</small>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box failure">
+                    <strong>STACKING</strong><br>
+                    <small>Rushed Timeline</small>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box failure">
+                    <strong>STAMPING</strong><br>
+                    <small>Magenta Displaced</small>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box failure">
+                    <strong>POST-STAMP</strong><br>
+                    <small>Set-off Loss</small>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box warning">
+                    <strong>PACKAGED</strong><br>
+                    <small>Defect Sealed</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETAILED TIMELINE -->
+        <div class="timeline">
+            
+            <!-- Stage 1: Prepress -->
+            <div class="stage">
+                <div class="stage-number">1</div>
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <span class="stage-icon">🖥️</span>
+                        <span class="stage-title">Prepress — File Preparation & Plates</span>
+                    </div>
+                    <div class="normal-process">
+                        <h4>✓ Normal Process — No Issues</h4>
+                        <p>Card artwork separated into CMYK channels. Four aluminum printing plates imaged correctly via CTP (Computer-to-Plate). Screen angles offset to prevent moiré (C: 15°, M: 75°, Y: 0°, K: 45°).</p>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>40-60+ cards positioned per press sheet</li>
+                            <li>Continuous tone images converted to halftone dot patterns</li>
+                            <li>Magenta plate imaged correctly — no deficiency at this stage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 2: Press -->
+            <div class="stage">
+                <div class="stage-number">2</div>
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <span class="stage-icon">�icing</span>
+                        <span class="stage-title">Press — CMYK Printing</span>
+                    </div>
+                    <div class="normal-process">
+                        <h4>✓ Normal Process — No Issues</h4>
+                        <p>Multi-unit sheet-fed offset press applies all four colors wet-on-wet. Each sheet passes through C → M → Y → K units in ~1-2 seconds. Ink density verified with densitometer.</p>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>Press speed: 8,000-15,000+ sheets per hour</li>
+                            <li>Ink tack calibrated in descending order for proper wet trapping</li>
+                            <li>Magenta printed at correct density — all ink applied normally</li>
+                            <li>Substrate: 300+ gsm clay-coated paperboard</li>
+                        </ul>
+                    </div>
+                    <div class="cmyk-visual">
+                        <div class="cmyk-dot cyan" title="Cyan"></div>
+                        <div class="cmyk-dot magenta" title="Magenta"></div>
+                        <div class="cmyk-dot yellow" title="Yellow"></div>
+                        <div class="cmyk-dot black" title="Black"></div>
+                        <span style="margin-left: 10px; color: #888;">All inks applied ✓</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 3: Ink Chemistry -->
+            <div class="stage">
+                <div class="stage-number">3</div>
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <span class="stage-icon">🧪</span>
+                        <span class="stage-title">Ink Chemistry — The Hidden Variable</span>
+                    </div>
+                    <div class="failure-process">
+                        <h4>⚠ Critical Factor — Magenta Cures Slower</h4>
+                        <p>Traditional offset inks cure through oxidative polymerization — oxygen reacts with oil-based vehicle to form solid film. This takes 24-72+ hours for full cure. Magenta pigments (lithol rubine/rhodamine) have slower oxidation rates than cyan, yellow, and black.</p>
+                    </div>
+                    <div class="chemistry-box">
+                        <h4>🔬 Magenta Ink Properties</h4>
+                        <ul style="list-style: none;">
+                            <li>• <strong>Pigment:</strong> Rhodamine/lithol rubine — slower oxidation chemistry</li>
+                            <li>• <strong>Formulation:</strong> Lower tack, lower viscosity — more mobile when uncured</li>
+                            <li>• <strong>Vehicle:</strong> Alkyd resin in vegetable oil — requires O₂ for polymerization</li>
+                        </ul>
+                    </div>
+                    <div class="cure-timeline">
+                        <div class="cure-item">
+                            <div class="time">15-30 min</div>
+                            <div class="label">Surface dry to touch</div>
+                        </div>
+                        <div class="cure-item">
+                            <div class="time">2-4 hrs</div>
+                            <div class="label">Handling dry</div>
+                        </div>
+                        <div class="cure-item">
+                            <div class="time">24-72+ hrs</div>
+                            <div class="label">Full cure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 4: The Shortcut -->
+            <div class="stage">
+                <div class="stage-number">4</div>
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <span class="stage-icon">⏱️</span>
+                        <span class="stage-title">The Shortcut — Insufficient Cure Time</span>
+                    </div>
+                    <div class="normal-process">
+                        <h4>What Should Have Happened</h4>
+                        <p>Sheets stack with anti-setoff powder between them. Pile rests for 24+ hours allowing air circulation. All ink layers fully oxidize and polymerize before proceeding to finishing.</p>
+                    </div>
+                    <div class="failure-process">
+                        <h4>✗ What Actually Happened</h4>
+                        <p>Yu-Gi-Oh demand exploded in 2002-2004. Production deadlines tightened. Sheets moved to finishing after only 4-8 hours instead of 24+. Cyan, yellow, black reached handling-dry state. <strong>Magenta remained soft and mobile beneath a deceptive surface skin.</strong></p>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>Surface appeared dry to touch — operators couldn't detect the problem</li>
+                            <li>Magenta layer remained uncured through full film thickness</li>
+                            <li>Reducing cure time significantly increased production capacity</li>
+                            <li>Shortcut appeared acceptable — consequences not visible until consumer level</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 5: Stamping -->
+            <div class="stage">
+                <div class="stage-number">5</div>
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <span class="stage-icon">🔥</span>
+                        <span class="stage-title">Hot Foil Stamping — The Critical Failure</span>
+                    </div>
+                    <div class="normal-process">
+                        <h4>What Should Have Happened</h4>
+                        <p>Hot die (90-150°C) strikes cured ink surface. Heat activates foil adhesive. Clean transfer with full coverage and strong bond. No ink displacement.</p>
+                    </div>
+                    <div class="failure-process">
+                        <h4>✗ What Actually Happened</h4>
+                        <p>Die struck surface with soft, uncured magenta beneath. Heat further softened the magenta. Pressure caused magenta to behave as <strong>viscous fluid under hydraulic pressure</strong>. Unable to compress, magenta displaced laterally — flowing outward and pooling at stamp perimeters.</p>
+                    </div>
+                    <div class="stamp-diagram">
+                        <h3>Hydraulic Displacement Mechanism</h3>
+                        <div class="stamp-visual">
+                            <div class="stamp-example">
+                                <h4>Normal Card (Cured Ink)</h4>
+                                <div class="card-surface">
+                                    <div class="stamp-zone"></div>
+                                </div>
+                                <p style="margin-top: 10px; color: #2ed573;">Clean stamp, no halo</p>
+                            </div>
+                            <div class="stamp-example">
+                                <h4>Defect Card (Uncured Magenta)</h4>
+                                <div class="card-surface" style="background: linear-gradient(180deg, #c9b037 0%, #a08620 100%);">
+                                    <div class="stamp-zone thin"></div>
+                                    <div class="magenta-halo"></div>
+                                    <div class="displacement-arrows">
+                                        <span class="arrow-out top">↑</span>
+                                        <span class="arrow-out bottom">↓</span>
+                                        <span class="arrow-out left">←</span>
+                                        <span class="arrow-out right">→</span>
+                                    </div>
+                                </div>
+                                <p style="margin-top: 10px; color: #ff6b6b;">Thin stamp + magenta halo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details" style="margin-top: 20px;">
+                        <ul>
+                            <li><strong>Pressure effect:</strong> Cured C/Y/K resist; uncured M flows laterally</li>
+                            <li><strong>Heat effect:</strong> Further reduces magenta viscosity, increases flow</li>
+                            <li><strong>Result:</strong> Magenta pools at stamp edges, creating visible halo</li>
+                            <li><strong>Foil adhesion:</strong> Poor bond to oily surface — thinner, weaker stamp</li>
+                            <li>Heat from die accelerates cure of displaced magenta, "freezing" it at edges</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 6: Post-Stamp Set-off -->
+            <div class="stage">
+                <div class="stage-number">6</div>
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <span class="stage-icon">📚</span>
+                        <span class="stage-title">Post-Stamp Handling — Card-Wide Magenta Loss</span>
+                    </div>
+                    <div class="failure-process">
+                        <h4>✗ The Second Mechanism</h4>
+                        <p>Stamped sheets restacked for cutting and collation. Magenta remaining on card face (outside stamp zones) was still uncured and mobile. Contact with interleaving sheets transferred this magenta away. <strong>Interleaving sheets were discarded</strong> — eliminating evidence of the transfer.</p>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>Stamp areas now slightly raised — act as standoffs during stacking</li>
+                            <li>Raised stamps protect the displaced magenta halos from transfer</li>
+                            <li>Card-wide areas without protection lose magenta to interleaving</li>
+                            <li>Card backs remain clean — never contact printed face directly</li>
+                            <li>No ghost images — magenta went to discarded interleaving paper</li>
+                        </ul>
+                    </div>
+                    <div class="ink-diagram">
+                        <h3>Why Only Magenta Was Affected</h3>
+                        <div class="ink-layers">
+                            <div class="ink-layer black-layer">BLACK — Cured ✓</div>
+                            <div class="ink-layer yellow-layer">YELLOW — Cured ✓</div>
+                            <div class="ink-layer magenta-layer uncured">MAGENTA — UNCURED ✗ (mobile, transferred away)</div>
+                            <div class="ink-layer cyan-layer">CYAN — Cured ✓</div>
+                            <div class="ink-layer substrate">SUBSTRATE (Clay-coated paperboard)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 7: Cutting & Packaging -->
+            <div class="stage">
+                <div class="stage-number">7</div>
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <span class="stage-icon">📦</span>
+                        <span class="stage-title">Cutting & Packaging — Defect Preserved</span>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>Sheets cut into individual cards via guillotine/die cutting</li>
+                            <li>Cutting pressure may trap slight magenta at card edges</li>
+                            <li>Cards sorted, collated, inserted into foil packs</li>
+                            <li>Packs heat-sealed — defect frozen exactly as it existed</li>
+                            <li>No further UV exposure, handling, or environmental factors possible</li>
+                            <li><strong>Sealed product confirms production origin</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLOR SHIFT EVIDENCE -->
+        <div class="evidence-section">
+            <h2>Visual Evidence — Color Shift Analysis</h2>
+            <table class="color-shift-table">
+                <thead>
+                    <tr>
+                        <th>Original Color</th>
+                        <th>CMYK Formula</th>
+                        <th>After Magenta Loss</th>
+                        <th>Resulting Appearance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Purple</td>
+                        <td>C + M</td>
+                        <td>C only</td>
+                        <td style="color: #00d4ff;">Blue/Cyan</td>
+                    </tr>
+                    <tr>
+                        <td>Red</td>
+                        <td>M + Y</td>
+                        <td>Y only</td>
+                        <td style="color: #ffdd00;">Yellow</td>
+                    </tr>
+                    <tr>
+                        <td>Brown</td>
+                        <td>C + M + Y</td>
+                        <td>C + Y</td>
+                        <td style="color: #7cb342;">Olive/Green</td>
+                    </tr>
+                    <tr>
+                        <td>Orange</td>
+                        <td>M + Y (more Y)</td>
+                        <td>Y only</td>
+                        <td style="color: #ffdd00;">Yellow</td>
+                    </tr>
+                    <tr>
+                        <td>Pink</td>
+                        <td>M (light)</td>
+                        <td>Nothing</td>
+                        <td style="color: #f5f5f5;">Near white</td>
+                    </tr>
+                    <tr>
+                        <td>Flesh tones</td>
+                        <td>M + Y + light C</td>
+                        <td>Y + light C</td>
+                        <td style="color: #c9e265;">Yellow-green</td>
+                    </tr>
+                    <tr>
+                        <td>Neutral gray</td>
+                        <td>C + M + Y balanced</td>
+                        <td>C + Y</td>
+                        <td style="color: #7cb342;">Green tint</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 15px; color: #888; text-align: center;">All color shifts follow consistent subtractive logic: remove M from the equation, see what remains.</p>
+        </div>
+
+        <!-- PHYSICAL EVIDENCE -->
+        <div class="mystery-solved">
+            <h2>Physical Evidence Summary</h2>
+            <div class="mystery-grid">
+                <div class="mystery-item">
+                    <h4>Why is there card-wide magenta loss?</h4>
+                    <p class="answer">Set-off transfer to interleaving sheets during post-stamp stacking. Interleaving was discarded.</p>
+                </div>
+                <div class="mystery-item">
+                    <h4>Why are there magenta halos around stamps?</h4>
+                    <p class="answer">Hydraulic displacement during hot stamping pushed fluid magenta outward, pooling at die edges.</p>
+                </div>
+                <div class="mystery-item">
+                    <h4>Why do stamps appear thinner on defect cards?</h4>
+                    <p class="answer">Poor foil adhesion to oily, uncured magenta surface. Both symptoms scale with cure state.</p>
+                </div>
+                <div class="mystery-item">
+                    <h4>Why does stamp thinness correlate with severity?</h4>
+                    <p class="answer">Both are indicators of the same variable: how uncured the magenta was at finishing time.</p>
+                </div>
+                <div class="mystery-item">
+                    <h4>Why is there slight magenta at card edges?</h4>
+                    <p class="answer">Sheet edges curl slightly, preventing full contact. Cutting pressure may trap residual magenta.</p>
+                </div>
+                <div class="mystery-item">
+                    <h4>Why are card backs always clean?</h4>
+                    <p class="answer">Backs never contacted printed faces directly — interleaving sheets received the transferred magenta.</p>
+                </div>
+                <div class="mystery-item">
+                    <h4>Why are there no ghost images?</h4>
+                    <p class="answer">Magenta transferred to interleaving paper (discarded) or equipment surfaces — not to other cards.</p>
+                </div>
+                <div class="mystery-item">
+                    <h4>Why does this span multiple sets (2002-2004)?</h4>
+                    <p class="answer">Systemic deadline pressure during Yu-Gi-Oh's explosive popularity. Same shortcut repeated across production runs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEVERITY SCALE -->
+        <div class="severity-scale">
+            <h2>Defect Severity Spectrum</h2>
+            <div class="severity-bar">
+                <div class="severity-segment slight">SLIGHT</div>
+                <div class="severity-segment moderate">MODERATE</div>
+                <div class="severity-segment significant">SIGNIFICANT</div>
+                <div class="severity-segment extreme">EXTREME</div>
+            </div>
+            <div class="severity-factors">
+                <div class="factor-card">
+                    <h4>Cure Time Allowed</h4>
+                    <p>First sheets in rushed batch had slightly more cure time. Last sheets had almost none.</p>
+                </div>
+                <div class="factor-card">
+                    <h4>Position in Stack</h4>
+                    <p>Center of stack = more pressure = more set-off transfer. Top/bottom = less severe.</p>
+                </div>
+                <div class="factor-card">
+                    <h4>Environmental Conditions</h4>
+                    <p>Higher humidity = slower cure. Temperature and airflow variations across facility.</p>
+                </div>
+                <div class="factor-card">
+                    <h4>Substrate Batch</h4>
+                    <p>Paper coating porosity varies batch-to-batch, affecting magenta adhesion and cure rate.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROOT CAUSE -->
+        <div class="root-cause">
+            <h2>🎯 Root Cause</h2>
+            <p><strong>Deadline pressure led to insufficient cure time.</strong><br><br>
+            Magenta's slower cure chemistry made it uniquely vulnerable. The defect wasn't a press problem, an ink shortage, or environmental damage — <strong>it was a time problem.</strong><br><br>
+            Reducing cure time from 24+ hours to 4-8 hours increased production capacity to meet explosive demand, but left magenta soft and mobile when sheets reached finishing. The stamping process displaced it, and subsequent handling transferred it away.</p>
+        </div>
+
+        <!-- AUTHENTICATION NOTE -->
+        <div style="margin-top: 40px; padding: 25px; background: rgba(72, 219, 251, 0.1); border-radius: 15px; border: 1px solid rgba(72, 219, 251, 0.3);">
+            <h3 style="color: #48dbfb; margin-bottom: 15px;">🔍 Authentication Implications</h3>
+            <p>This defect <strong>cannot be replicated</strong> through light exposure, chemical treatment, or artificial aging:</p>
+            <ul style="margin-top: 10px; margin-left: 20px;">
+                <li>Light-based fading would affect all pigments and show gradual gradients — not sharp stamp halos</li>
+                <li>Chemical removal would damage substrate and other ink layers</li>
+                <li>No method can recreate the hydraulic displacement pattern around stamps</li>
+                <li>The concentrated magenta halos (denser than normal cards) prove physical displacement, not removal</li>
+                <li>Sealed product from this era with these characteristics is definitively production-origin</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
